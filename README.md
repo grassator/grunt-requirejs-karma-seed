@@ -17,6 +17,13 @@ The above steps will download all the required dependencies to
 build and run this app, such as [grunt](http://gruntjs.com) and
 [requirejs](http://requirejs.org).
 
+## Changing Directory Structure
+
+To allow for better flexibility some of the directory structure like the name
+of vendor, src and dist folders can be changed inside `paths.json` file. This
+might be useful for example if you decide to use this template as a starting
+point for an application or library that must conform to certain guidelines.
+
 ## Building the application
 
 This application uses requirejs to load the various modules in
