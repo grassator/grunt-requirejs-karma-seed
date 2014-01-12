@@ -20,7 +20,7 @@ module.exports = function (config) {
         paths.src + '/config.js',
         {pattern: paths.src + '/**/*.js', included: false},
         {pattern: 'test/**/*Spec.js', included: false},
-        'test/test-main.js'
+        'test/_karma.js'
       ],
 
 

@@ -108,6 +108,12 @@ module.exports = function (grunt) {
         files: ['test/**/*.js'],
         tasks: ['jshint:test', 'karma:unit:run']
       },
+      livereload: {
+        options: {
+          livereload: true
+        },
+        files: ['<%= paths.dist %>/**/*.js', '<%= paths.dist %>/**/*.css', 'examples/**/*.html']
+      }
     },
 
     requirejs: {
@@ -128,13 +134,14 @@ module.exports = function (grunt) {
     connect: {
       development: {
         options: {
-          livereload: true
+          base: ['<%= paths.dist %>', '<%= paths.vendor %>', 'examples'],
+          livereload: true,
+          open: true
         }
       }
     }
   });
 
-  grunt.registerTask('empty', []);
   grunt.registerTask('js', ['requirejs', 'concat', 'uglify']);
   grunt.registerTask('test', ['karma:ci']);
   grunt.registerTask('default', ['jshint', 'test', 'clean', 'js']);
