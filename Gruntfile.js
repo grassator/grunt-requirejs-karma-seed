@@ -64,13 +64,13 @@ module.exports = function (grunt) {
     karma: {
       options: {
         configFile: 'karma.conf.js',
-      },
-      ci: {
-        singleRun: true,
         browsers: ['PhantomJS']
       },
+      ci: {
+        singleRun: true
+      },
       unit: {
-        reporters: ['progress']
+        background: true
       }
     },
 
@@ -102,11 +102,11 @@ module.exports = function (grunt) {
       },
       src: {
         files: ['<%= paths.src %>/**/*.js'],
-        tasks: ['jshint:src', 'jasmine']
+        tasks: ['jshint:src', 'karma:unit:run']
       },
       test: {
         files: ['test/**/*.js'],
-        tasks: ['jshint:test', 'jasmine']
+        tasks: ['jshint:test', 'karma:unit:run']
       },
     },
 
@@ -128,14 +128,15 @@ module.exports = function (grunt) {
     connect: {
       development: {
         options: {
-          keepalive: true
+          livereload: true
         }
       }
     }
   });
 
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'karma:ci', 'clean', 'requirejs', 'concat', 'uglify']);
-  grunt.registerTask('server', ['connect:development']);
+  grunt.registerTask('empty', []);
+  grunt.registerTask('js', ['requirejs', 'concat', 'uglify']);
   grunt.registerTask('test', ['karma:ci']);
+  grunt.registerTask('default', ['jshint', 'test', 'clean', 'js']);
+  grunt.registerTask('server', ['karma:unit:start', 'connect', 'watch']);
 };
