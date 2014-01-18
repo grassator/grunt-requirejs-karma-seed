@@ -18,6 +18,14 @@
     "it",
     "require",
     "define",
-    "requirejs"
+    "requirejs",
+    "describe",
+    "it",
+    "beforeEach",
+    "afterEach",
+    "runs",
+    "waitsFor",
+    "spyOn",
+    "jasmine"
   ]
 }
