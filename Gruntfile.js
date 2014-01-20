@@ -63,7 +63,8 @@ module.exports = function (grunt) {
 
     karma: {
       options: {
-        configFile: 'karma.conf.js'
+        configFile: 'karma.conf.js',
+        autoWatch: false // true doesn't work with esteWatch 
       },
       ci: {
         singleRun: true
@@ -94,26 +95,49 @@ module.exports = function (grunt) {
       }
     },
 
-    watch: {
-      gruntfile: {
-        files: 'Gruntfile.js',
-        tasks: ['jshint:gruntfile']
+    esteWatch: {
+      options: {
+        dirs: [paths.src, 'test', 'examples'],
+        livereload: {
+          enabled: true,
+          port: 35729,
+          extensions: ['html', 'js', 'css']
+        }
       },
-      src: {
-        files: ['<%= paths.src %>/**/*.js'],
-        tasks: ['jshint:src', 'karma:unit:run']
+      js: function(filepath) {
+        var tasks = [];
+        if(filepath.indexOf(paths.src) === 0) {
+          grunt.config(['jshint:src'], filepath);
+          tasks.push('jshint:src');
+        } else if (filepath.indexOf('test') === 0) {
+          grunt.config(['jshint:test'], filepath);
+          tasks.push('jshint:test');
+        }
+        tasks.push('karma:unit:run');
+        return tasks;
       },
-      test: {
-        files: ['test/**/*.js'],
-        tasks: ['jshint:test', 'karma:unit:run']
-      },
-      livereload: {
-        options: {
-          livereload: true
-        },
-        files: ['<%= paths.dist %>/**/*.js', '<%= paths.dist %>/**/*.css', 'examples/**/*.html']
-      }
     },
+
+    // watch: {
+    //   gruntfile: {
+    //     files: 'Gruntfile.js',
+    //     tasks: ['jshint:gruntfile']
+    //   },
+    //   src: {
+    //     files: ['<%= paths.src %>/**/*.js'],
+    //     tasks: ['jshint:src', 'karma:unit:run']
+    //   },
+    //   test: {
+    //     files: ['test/**/*.js'],
+    //     tasks: ['jshint:test', 'karma:unit:run']
+    //   },
+    //   livereload: {
+    //     options: {
+    //       livereload: true
+    //     },
+    //     files: ['<%= paths.dist %>/**/*.js', '<%= paths.dist %>/**/*.css', 'examples/**/*.html']
+    //   }
+    // },
 
     requirejs: {
       compile: {
@@ -133,7 +157,7 @@ module.exports = function (grunt) {
     connect: {
       development: {
         options: {
-          base: ['<%= paths.dist %>', '<%= paths.vendor %>', 'examples'],
+          base: ['<%= paths.src %>', '<%= paths.vendor %>', 'examples'],
           livereload: true,
           open: true
         }
@@ -142,7 +166,8 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('js', ['requirejs', 'concat', 'uglify']);
+  grunt.registerTask('watch', ['karma:unit:start', 'esteWatch']);
   grunt.registerTask('test', ['karma:ci']);
   grunt.registerTask('default', ['jshint', 'test', 'clean', 'js']);
-  grunt.registerTask('server', ['karma:unit:start', 'connect', 'watch']);
+  grunt.registerTask('server', ['connect', 'watch']);
 };
