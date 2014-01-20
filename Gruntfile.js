@@ -119,9 +119,9 @@ module.exports = function (grunt) {
     requirejs: {
       compile: {
         options: {
-          name: 'main',
+          name: 'rjs-shim',
           mainConfigFile: '<%= paths.src %>/config.js',
-          include: ['../<%= paths.vendor %>/almond/almond.js'],
+          include: ['main'],
           insertRequire: ['main'],
           logLevel: 2, // WARN
           out: '<%= concat.dist.dest %>',

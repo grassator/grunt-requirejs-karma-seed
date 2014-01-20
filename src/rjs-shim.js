@@ -1,6 +1,3 @@
-/*! grunt-requirejs-karma-seed - v0.1.0 - 2014-01-20
-* Copyright (c) 2014 Author Name; Licensed MIT */
-(function () {
 /**
  * Custom require.js for usage with r.js
  * @license rjs-shim 0.2.0 Copyright (c) 2014, Dmitriy Kubyshkin
@@ -63,13 +60,4 @@ var require, define;
     };
 
     define.amd = amd;
-}());
-
-define("rjs-shim", function(){});
-
-define('main',[],function(){
-  return "works";
-});
-
-require(["main"]);
 }());

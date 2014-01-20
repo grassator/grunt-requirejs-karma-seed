@@ -19,8 +19,7 @@
     "paths.json"
   ],
   "devDependencies": {
-    "requirejs": "~2.1.5",
-    "almond": "~0.2.8"
+    "requirejs": "~2.1.5"
   },
   "exportsOverride": {
     "requirejs": {
