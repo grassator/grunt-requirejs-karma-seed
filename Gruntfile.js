@@ -118,27 +118,6 @@ module.exports = function (grunt) {
       },
     },
 
-    // watch: {
-    //   gruntfile: {
-    //     files: 'Gruntfile.js',
-    //     tasks: ['jshint:gruntfile']
-    //   },
-    //   src: {
-    //     files: ['<%= paths.src %>/**/*.js'],
-    //     tasks: ['jshint:src', 'karma:unit:run']
-    //   },
-    //   test: {
-    //     files: ['test/**/*.js'],
-    //     tasks: ['jshint:test', 'karma:unit:run']
-    //   },
-    //   livereload: {
-    //     options: {
-    //       livereload: true
-    //     },
-    //     files: ['<%= paths.dist %>/**/*.js', '<%= paths.dist %>/**/*.css', 'examples/**/*.html']
-    //   }
-    // },
-
     requirejs: {
       compile: {
         options: {
@@ -158,7 +137,7 @@ module.exports = function (grunt) {
       development: {
         options: {
           base: ['<%= paths.src %>', '<%= paths.vendor %>', 'examples'],
-          livereload: true,
+          livereload: '<%= esteWatch.options.livereload.port %>',
           open: true
         }
       }
