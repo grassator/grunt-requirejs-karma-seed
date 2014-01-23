@@ -17,13 +17,5 @@
     "karma.conf.js",
     "package.json",
     "paths.json"
-  ],
-  "devDependencies": {
-    "requirejs": "~2.1.5"
-  },
-  "exportsOverride": {
-    "requirejs": {
-      "": "require.js"
-    }
-  }
+  ]
 }

@@ -26,16 +26,6 @@ module.exports = function (grunt) {
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
 
-    // Task configuration.
-    bower: {
-      install: {
-        options: {
-          cleanup: true,
-          targetDir: '<%= paths.vendor %>'
-        }
-      }
-    },
-
     clean: {
       files: ['<%= paths.dist %>']
     },
