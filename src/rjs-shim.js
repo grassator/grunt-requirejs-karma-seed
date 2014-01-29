@@ -55,7 +55,7 @@ var require, define;
                 dependencies[i] = resolve(name, dependencies[i]);
             }
             dependencies = require(dependencies);
-            return define.amd[name] = initializer.apply(this, dependencies);
+            return (define.amd[name] = initializer.apply(this, dependencies));
         };
     };
 

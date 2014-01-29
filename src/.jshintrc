@@ -8,8 +8,6 @@
   "sub": true,
   "undef": true,
   "unused": true,
-  "boss": true,
   "eqnull": true,
-  "browser": true,
-  "predef": ["require","define", "alert"]
+  "predef": ["require","define", "alert", "window", "document"]
 }
